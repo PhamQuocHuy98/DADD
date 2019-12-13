@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashBoardActivity">
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/yellow"
+        app:navigationIcon="@drawable/icon_leading"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginRight="80dp"
+                android:id="@+id/myEditText"
+                android:hint="Tim kiem"
+                android:background="@color/white" />
+            <RelativeLayout
+                android:layout_marginRight="15dp"
+                android:id="@+id/imageCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icon_cart"
+                    android:padding="18dp"
+                    android:layout_height="wrap_content">
+                </ImageButton>
+                <FrameLayout
+
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/btnCard"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/cicle_cart"
+                        android:layout_height="wrap_content">
+
+                    </ImageButton>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="1"
+                        android:textSize="10sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+                </FrameLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+</LinearLayout>
