@@ -33,7 +33,9 @@ public class VideoPlayActivity extends YouTubeBaseActivity implements YouTubePla
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-        youTubePlayer.cueVideo(idVideo);
+        youTubePlayer.loadVideo(idVideo);
+        youTubePlayer.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_ALWAYS_FULLSCREEN_IN_LANDSCAPE);
+        youTubePlayer.setFullscreen(true);
     }
 
     @Override
