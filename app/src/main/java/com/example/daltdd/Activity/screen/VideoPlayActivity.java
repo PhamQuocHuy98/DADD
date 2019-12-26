@@ -24,7 +24,7 @@ public class VideoPlayActivity extends YouTubeBaseActivity implements YouTubePla
 
         idVideo= getIntent().getExtras().getString("idVideo");
 
-        Toast.makeText(this,idVideo,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,idVideo,Toast.LENGTH_LONG).show();
         youTubePlayerView =findViewById(R.id.myVideo);
 
         youTubePlayerView.initialize(APIKEY,this);

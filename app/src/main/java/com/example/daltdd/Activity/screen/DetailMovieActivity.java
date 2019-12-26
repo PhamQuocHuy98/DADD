@@ -25,6 +25,7 @@ import com.example.daltdd.Activity.model.MoviePopular;
 import com.example.daltdd.Activity.network.HomeApi;
 import com.example.daltdd.Activity.network.HomeApiService;
 import com.example.daltdd.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class DetailMovieActivity extends AppCompatActivity implements IMovieOnLi
         String backgroundVideo = intent.getExtras().getString("backgroundVideo");
         ImageView imageView = findViewById(R.id.detailImageMovie);
         ImageView viewVideoImg = findViewById(R.id.viewVideoDetail);
-
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatbutton);
         bindingData();
 
 
@@ -108,6 +109,16 @@ public class DetailMovieActivity extends AppCompatActivity implements IMovieOnLi
             @Override
             public void onClick(View v) {
 
+                Intent intent1 = new Intent(getBaseContext(),VideoPlayActivity.class);
+                intent1.putExtra("idVideo",idVideoYotube);
+
+                startActivity(intent1);
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent1 = new Intent(getBaseContext(),VideoPlayActivity.class);
                 intent1.putExtra("idVideo",idVideoYotube);
 

@@ -27,12 +27,15 @@ import com.example.daltdd.Activity.model.MoviePopular;
 import com.example.daltdd.Activity.network.HomeApi;
 import com.example.daltdd.Activity.network.HomeApiService;
 import com.example.daltdd.R;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +46,7 @@ public class HomeActitivy extends AppCompatActivity implements IMovieOnLickListe
     private List<MovieCardInfo> listMovieCardInfo;
     private  List<MoviePopular> listMoviewPopular;
     private ViewPager slidePage;
-
+    private TabLayout indicator;
     ImageView imageView;
     private HomeApiService homeApiProvider;
 
@@ -71,6 +74,7 @@ public class HomeActitivy extends AppCompatActivity implements IMovieOnLickListe
             }
         });
 
+
     }
 
 
@@ -91,11 +95,16 @@ public class HomeActitivy extends AppCompatActivity implements IMovieOnLickListe
 
                             listMovieCardInfo.add(new MovieCardInfo("https://image.tmdb.org/t/p/original/" + res.getResults().get(0).getPosterPath(), res.getResults().get(0).getTitle()));
                             listMovieCardInfo.add(new MovieCardInfo("https://image.tmdb.org/t/p/original/" + res.getResults().get(1).getPosterPath(), res.getResults().get(1).getTitle()));
-                            slidePage = findViewById(R.id.slide_pager);
+                            slidePage = findViewById(R.id.slider_pager);
                             listMovieCardInfo.add(new MovieCardInfo("https://image.tmdb.org/t/p/original/" + res.getResults().get(2).getPosterPath(), res.getResults().get(2).getTitle()));
                             slidePage.setAdapter(adapter);
 
 
+                            indicator = findViewById(R.id.indicator);
+                            //Setup time;
+                            Timer timer = new Timer();
+                            timer.scheduleAtFixedRate(new SlideTimer(),4000, 6000);
+                            indicator.setupWithViewPager(slidePage, true);
 
                             // add recyclview
 
@@ -110,7 +119,7 @@ public class HomeActitivy extends AppCompatActivity implements IMovieOnLickListe
 
                             }
 
-                            MoviewRV = findViewById(R.id.recycler_home_movies);
+                            MoviewRV = findViewById(R.id.Rv_movies);
 
                             MoviewRV.setAdapter(movieRecyclerAdapter);
                             MoviewRV.setLayoutManager(new LinearLayoutManager(getBaseContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -154,5 +163,22 @@ public class HomeActitivy extends AppCompatActivity implements IMovieOnLickListe
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,imageView,"sharedName");
         startActivity(intent,options.toBundle());
+    }
+
+    class SlideTimer extends TimerTask {
+
+        @Override
+        public void run() {
+            HomeActitivy.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(slidePage.getCurrentItem() < listMovieCardInfo.size()-1) {
+                        slidePage.setCurrentItem(slidePage.getCurrentItem()+1);
+                    }
+                    else
+                        slidePage.setCurrentItem(0);
+                }
+            });
+        }
     }
 }
